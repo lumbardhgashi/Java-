@@ -1,32 +1,42 @@
-/*
-4.	Shkruani klasën Ushtrimi4 që kryen këtë funksion:
-Udhëzon shfrytëzuesin të shtyp numra të plotë dhe informoni se numri -7777 (SENTINEL) e
-terminon loop dhe nuk përfshihet në kalkulim
-Në fund të shtypet (afishohet) se sa numra janë shtypur gjithsej dhe sa nga këta numra
-ishin shumëfishi edhe i numrit 4 edhe i numrit 8 (p.sh. numri 64 është një numër i tillë)
- */
-
 import java.util.Scanner;
 public class Ushtrimi4 {
-    public static void main(String[] args) {
 
-        Scanner scan = new Scanner(System.in);
+	public static void main(String[] args) {
+		Scanner scan= new Scanner (System.in);
 
-        int nr ;
-        int count= -1;
-        int kushti = 0 ;
-        final int SENTINEL = -7777;
+	    System.out.println("Shkruani nje numer se paku 10");
+	    int numri = scan.nextInt();
+	    do {
+	    	if(numri<10) {
+	    		System.out.println("Shkruani nje numer se paku 10");
+	    	    numri = scan.nextInt();
+	    	}
+	    }
+	    while(numri<10);
+	    
+        
+        String [] fjalia = new String[numri];
+        scan.nextLine();
+        
+	    for(int i=0;i<numri;i++) {
+	        System.out.println("Shkruani fjali:");
+	        fjalia[i]=scan.nextLine();
 
-        do {
-            System.out.print("Shtypni nje numer te plote , me -7777 e perfundon loop-en => ");
-            nr = scan.nextInt();
-            count++;
-            if (nr % 4 == 0 && nr % 8 == 0){
-                kushti++;
-            }
-        }
-        while (nr != SENTINEL );
+	    }
+	    
+	    int kushti = numeroSimbolet(fjalia);
 
-        System.out.println("Ju keni shtypur gjithsej => " +count+ " numra dhe => " +kushti+ " prej tyre e kan plotesuar kushtin");
-    }
+	    System.out.println("Jane shtypur gjithsej " + numri +" fjale/fjali dhe " + kushti + " plotesojne kushtin");
+	    scan.close();
+		
+	}
+	public static int numeroSimbolet(String[] fjalia) {
+		int kushti=0;
+		for(int i=0; i<fjalia.length;i++) {
+			if(fjalia[i].length()>=6 && fjalia[i].length()<=15 && !fjalia[i].contains("+") && !fjalia[i].contains("-") && !fjalia[i].contains("*") && !fjalia[i].contains("/") && !fjalia[i].contains("%")) {
+				kushti++;
+			}
+		}
+		return kushti;
+	}
 }

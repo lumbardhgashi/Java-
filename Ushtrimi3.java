@@ -1,31 +1,51 @@
-/*
-3.Shkruani klasën Ushtrimi3 që kryen këtë funksion:
-Udhëzon shfrytëzuesin të shtyp numra të plotë dhe informoni se numri -3333 (SENTINEL)
-e terminon loop dhe nuk përfshihet në kalkulim
-Në fund të shtypet (afishohet) se sa numra janë shtypur gjithsej dhe sa nga këta numra ishin çift
- */
-
 import java.util.Scanner;
 public class Ushtrimi3 {
+
     public static void main(String[] args) {
+        Scanner scan= new Scanner (System.in);
 
-        Scanner scan = new Scanner(System.in);
-
-        int nr ;
-        int count= -1;
-        int cift = 0 ;
-        final int SENTINEL = -3333;
+        System.out.println("Shkruani nje numer se paku 10");
+        int numri = scan.nextInt();
 
         do {
-            System.out.print("Shtypni nje numer te plote , me -3333 e perfundon loop-en => ");
-            nr = scan.nextInt();
-            count++;
-            if (nr % 2 == 0){
-                cift++;
-            }
-        }
-        while (nr != SENTINEL );
+	    	if(numri<10) {
+	    		System.out.println("Shkruani nje numer se paku 10");
+	    	    numri = scan.nextInt();
+	    	}
+	    }
+	    while(numri<10);
+        String [] fjalia = new String[numri];
+        scan.nextLine();
 
-        System.out.println("Ju keni shtypur gjithsej => " +count+ " numra dhe => " +cift+ " prej tyre jan CIFT");
+        for(int i=0;i<numri;i++) {
+            System.out.println("Shkruani fjali:");
+            fjalia[i]=scan.nextLine();
+
+        }
+        int kushti = numeroZanoret(fjalia);
+
+        System.out.println("Jane shtypur gjithsej " + numri +" fjale/fjali dhe " + kushti + " prej tyre kishin me shume se 5 zanore");
+
+        scan.close();
     }
+
+    public static int numeroZanoret(String[] fjalia) {
+        int count = 0;
+        int kushti =0;
+        for(int i=0; i <fjalia.length;i++) {
+            for(int j=0;j<fjalia[i].length();j++) {
+                if("aeiouy".indexOf(fjalia[i].toLowerCase().charAt(j))!=-1) {
+                    count++;
+                }
+
+            }
+            if(count>=5) {
+                kushti++;
+            }
+        count=0;
+        }
+        return kushti;
+
+    }
+
 }
